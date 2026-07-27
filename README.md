@@ -17,7 +17,7 @@ Este repositório contém a solução para o case de Data Science do iFood.
 1) Deve-se fazer o clone do repositorio
 git clone https://github.com/atillaSilva/ifood-case-ds.git
 
-2) Deve-se criar o schema usando o codigo em SQL abaixo
+2) Deve-se criar o schema usando o codigo em SQL
    CREATE SCHEMA IF NOT EXISTS ifood_case.default;
 
 4) Rodar o arquivo [main](https://github.com/atillaSilva/ifood-case-ds/blob/main/app/main.ipynb) que encontra-se na pasta app*
