@@ -2,6 +2,8 @@ from typing import Optional
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.types import StructType, StructField, StringType, DoubleType
+from pyspark.sql import SparkSession
+from config.tables.table_config import TABLE_CONFIG
 
 class TransactionsTableProcessor:
     """
@@ -9,9 +11,8 @@ class TransactionsTableProcessor:
     Pure PySpark implementation - no pandas dependencies.
     """
     
-    def __init__(self, spark_session: SparkSession, 
-                 json_path: str,
-                 output_table: str = "ifood_case.default.transactions") -> None:
+    def __init__(self, 
+                 json_path: str) -> None:
         """
         Initialize the TransactionsTableProcessor.
         
@@ -20,9 +21,9 @@ class TransactionsTableProcessor:
             json_path: Path to the transactions JSON file
             output_table: Full table name for output (catalog.schema.table)
         """
-        self.spark: SparkSession = spark_session
         self.json_path: str = json_path
-        self.output_table: str = output_table
+        self.output_table: str = TABLE_CONFIG.PROFILE
+        self.spark = SparkSession.builder.getOrCreate()
     
     def load_data(self) -> DataFrame:
         """

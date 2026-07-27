@@ -9,15 +9,13 @@ sys.path.append('./../..')
 
 # COMMAND ----------
 
-from src.feature_engineering.transactions_table_processor import TransactionsTableProcessor
+from src.feature_engineering.transactions_processor import TransactionsTableProcessor
 
 # COMMAND ----------
 
 # Initialize and run the processor
 processor = TransactionsTableProcessor(
-    spark_session=spark,
-    json_path='file:/Workspace/Users/atillaa4@gmail.com/iFood - Case/src/data/raw/transactions.json',
-    output_table='ifood_case.default.transactions'
+    json_path='file:/Workspace/Users/atillaa4@gmail.com/ifood-case-ds/src/data/raw/transactions.json',
 )
 
 df_transactions = processor.process()

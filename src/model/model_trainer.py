@@ -72,6 +72,7 @@ class ModelTrainer:
         Returns:
             DataFrame: DataFrame with gender_idx column
         """
+        df.display()
         return df.withColumn(
             "gender_idx",
             F.when(F.col("gender") == "F", 0.0)
@@ -104,7 +105,7 @@ class ModelTrainer:
         return assembler.transform(df)
     
     def split_and_save(self, df: DataFrame, offer_type: str, 
-                      train_ratio: float = 0.8, seed: int = 42) -> Tuple[DataFrame, DataFrame]:
+                      train_ratio: float = 0.8, seed: int = 42):
         """
         Split data for specific offer type and save to tables.
         
@@ -126,9 +127,9 @@ class ModelTrainer:
         train_df, test_df = offer_df.randomSplit([train_ratio, 1 - train_ratio], seed=seed)
         
         # Save to tables
-        train_df.write.mode("overwrite").saveAsTable(f"ifood_case.default.train_{offer_type}")
-        test_df.write.mode("overwrite").saveAsTable(f"ifood_case.default.test_{offer_type}")
-        
+        train_df.write.mode("overwrite").option('overwriteSchema', True).saveAsTable(f"ifood_case.default.train_{offer_type}")
+        test_df.write.mode("overwrite").option('overwriteSchema', True).saveAsTable(f"ifood_case.default.test_{offer_type}")
+
         return train_df, test_df
     
     def train_model(self, train_df: DataFrame, num_trees: int = 100, 
@@ -269,6 +270,7 @@ class ModelTrainer:
             print(f"{'='*50}")
             
             train_df, test_df = self.split_and_save(df, offer)
+
             model = self.train_model(train_df)
             
             # Evaluate model

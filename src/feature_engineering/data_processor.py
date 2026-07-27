@@ -36,7 +36,7 @@ class DataProcessor:
         transactions_raw: DataFrame = self.spark.table(TABLE_CONFIG.TRASACTIONS)
         return offers_raw, profile_raw, transactions_raw
     
-    def fill_missing_offer_ids(self, transactions_df: DataFrame) -> DataFrame:
+    def fill_missing_transactions_offers(self, transactions_df: DataFrame) -> DataFrame:
         """
         Fill missing offer_id values using window function.
         Uses lag to propagate previous offer_id within same account_id and time window.
@@ -155,8 +155,8 @@ class DataProcessor:
         Returns:
             DataFrame: Final consolidated dataset
         """
-        return offer_events_df \
-            .join(profile_df, on="account_id", how="inner") \
+        offer_events_df = offer_events_df \
+            .join(profile_df, on=["account_id"], how="inner") \
             .join(offers_clean_df, on="offer_id", how="left") \
             .join(user_spend_stats_df, on="account_id", how="left") \
             .na.fill({
@@ -165,6 +165,7 @@ class DataProcessor:
                 "avg_ticket": 0.0, 
                 "max_spent": 0.0
             })
+        return offer_events_df
     
     def save(self, df: DataFrame, mode: str = 'overwrite') -> None:
         """
@@ -193,7 +194,7 @@ class DataProcessor:
         offers_raw, profile_raw, transactions_raw = self.load_raw_data()
         
         # Transform data
-        transactions_filled: DataFrame = self.fill_missing_offer_ids(transactions_raw)
+        transactions_filled: DataFrame = self.fill_missing_transactions_offers(transactions_raw)
         offers_clean: DataFrame = self.clean_offers(offers_raw)
         transactions_extracted: DataFrame = self.extract_transactions(transactions_filled)
         offer_events: DataFrame = self.create_offer_events(transactions_extracted)

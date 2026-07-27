@@ -1,13 +1,15 @@
 from config.tables.table_config import TABLE_CONFIG
 import pyspark.sql.functions as f
 import pyspark.sql as DataFrame
+from pyspark.sql import SparkSession
 
 class ProfileProcessor:
     def __init__(self):
         self.input_table = TABLE_CONFIG.PROFILE
+        self.spark = SparkSession.builder.getOrCreate()
 
     def load_profile(self, json_path: str) -> DataFrame:
-        df_profile = spark.read.json(json_path)
+        df_profile = self.spark.read.json(json_path)
         return df_profile
     
     def formated_df(self, df_profile: DataFrame) -> DataFrame:
@@ -35,8 +37,3 @@ class ProfileProcessor:
         df_profile = self.create_registered_on_days(df_profile)
         df_profile = self.formated_df(df_profile)
         self.save_profile(df_profile)
-
-# Example usage:
-# processor = ProfileProcessor(config)
-# df_profile = processor.load_profile('../raw/profile.json')
-# processor.save_profile(df_profile)
