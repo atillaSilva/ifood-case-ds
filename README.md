@@ -17,6 +17,6 @@ Este repositório contém a solução para o case de Data Science do iFood.
 1) Deve-se fazer o clone do repositorio
 git clone https://github.com/atillaSilva/ifood-case-ds.git   
 
-2) Rodar o arquivo main que encontra-se na pasta app*
+2) Rodar o arquivo [main](https://github.com/atillaSilva/ifood-case-ds/blob/main/app/main.ipynb) que encontra-se na pasta app*
 
-*obs: O projeto foi feito no databricks, se usar esse ambiente com o cluster serverless, nao ha necessidade de instalar nenhum modulo
+*obs: O projeto foi feito no ambiente do databricks, se usar esse ambiente com o cluster serverless, nao ha necessidade de instalar nenhum module
