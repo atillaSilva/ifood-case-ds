@@ -22,7 +22,7 @@ class TransactionsTableProcessor:
             output_table: Full table name for output (catalog.schema.table)
         """
         self.json_path: str = json_path
-        self.output_table: str = TABLE_CONFIG.PROFILE
+        self.output_table: str = TABLE_CONFIG.TRASACTIONS
         self.spark = SparkSession.builder.getOrCreate()
     
     def load_data(self) -> DataFrame:

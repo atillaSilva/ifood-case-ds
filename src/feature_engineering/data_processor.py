@@ -156,7 +156,7 @@ class DataProcessor:
             DataFrame: Final consolidated dataset
         """
         offer_events_df = offer_events_df \
-            .join(profile_df, on=["account_id"], how="inner") \
+            .join(profile_df, on="account_id", how="inner") \
             .join(offers_clean_df, on="offer_id", how="left") \
             .join(user_spend_stats_df, on="account_id", how="left") \
             .na.fill({

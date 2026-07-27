@@ -72,7 +72,6 @@ class ModelTrainer:
         Returns:
             DataFrame: DataFrame with gender_idx column
         """
-        df.display()
         return df.withColumn(
             "gender_idx",
             F.when(F.col("gender") == "F", 0.0)

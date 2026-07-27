@@ -13,7 +13,9 @@ class ProfileProcessor:
         return df_profile
     
     def formated_df(self, df_profile: DataFrame) -> DataFrame:
-        df_profile = df_profile.withColumnRenamed('id', 'account_id')
+        df_profile = (df_profile
+                      .withColumnRenamed('id', 'account_id')
+                      .withColumnRenamed('offer_id', 'offer_id_user'))
         return df_profile
     
     def convert_str_to_date(self, df_profile: DataFrame) -> DataFrame:

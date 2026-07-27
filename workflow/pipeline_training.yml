@@ -5,15 +5,15 @@ resources:
       tasks:
         - task_key: offers_processor
           notebook_task:
-            notebook_path: /Workspace/Users/atillaa4@gmail.com/ifood-case-ds/app/feature_engineering/offers_processor
+            notebook_path: /Workspace/Users/${workspace.current_user.userName}/ifood-case-ds/app/feature_engineering/offers_processor
             source: WORKSPACE
         - task_key: profile_processor
           notebook_task:
-            notebook_path: /Workspace/Users/atillaa4@gmail.com/ifood-case-ds/app/feature_engineering/profile_processor
+            notebook_path: /Workspace/Users/${workspace.current_user.userName}/ifood-case-ds/app/feature_engineering/profile_processor
             source: WORKSPACE
         - task_key: transation_processor
           notebook_task:
-            notebook_path: /Workspace/Users/atillaa4@gmail.com/ifood-case-ds/app/feature_engineering/transactions_processor
+            notebook_path: /Workspace/Users/${workspace.current_user.userName}/ifood-case-ds/app/feature_engineering/transactions_processor
             source: WORKSPACE
         - task_key: data_preparation
           depends_on:
@@ -21,13 +21,13 @@ resources:
             - task_key: profile_processor
             - task_key: offers_processor
           notebook_task:
-            notebook_path: /Workspace/Users/atillaa4@gmail.com/ifood-case-ds/app/feature_engineering/data_processor
+            notebook_path: /Workspace/Users/${workspace.current_user.userName}/ifood-case-ds/app/feature_engineering/data_processor
             source: WORKSPACE
         - task_key: model_trainer
           depends_on:
             - task_key: data_preparation
           notebook_task:
-            notebook_path: /Workspace/Users/atillaa4@gmail.com/ifood-case-ds/app/model/model_trainer
+            notebook_path: /Workspace/Users/${workspace.current_user.userName}/ifood-case-ds/app/model/model_trainer
             source: WORKSPACE
       queue:
         enabled: true

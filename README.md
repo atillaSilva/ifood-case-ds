@@ -8,21 +8,15 @@ Este repositório contém a solução para o case de Data Science do iFood.
 - `data/`: Pasta com os dados utilizados no case.
 - `notebooks/`: Notebooks com análises exploratórias e modelagem.
 - `src/`: Scripts Python para processamento de dados e treinamento de modelos.
-- `requirements.txt`: Lista de dependências do projeto.
+- `app`: Notebook para rodar cada modulo do projeto.
+- `config`: Variaveis de configuracao do projeto
+- `workflow`: Workflow para funcionamento do projeto
 
 ## Como executar o fluxo
 
-1. Instale as dependências:
-   bash
-   pip install -r requirements.txt
-   
+1) Deve-se fazer o clone do repositorio
+git clone https://github.com/atillaSilva/ifood-case-ds.git   
 
-2. Execute o notebook principal:
-   bash
-   jupyter notebook notebooks/main.ipynb
-   
+2) Rodar o arquivo main que encontra-se na pasta app*
 
-3. Para rodar os scripts diretamente:
-   bash
-   python src/preprocess.py
-   python src/train_model.py
+*obs: O projeto foi feito no databricks, se usar esse ambiente com o cluster serverless, nao ha necessidade de instalar nenhum modulo
