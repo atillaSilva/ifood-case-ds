@@ -15,8 +15,11 @@ Este repositório contém a solução para o case de Data Science do iFood.
 ## Como executar o fluxo
 
 1) Deve-se fazer o clone do repositorio
-git clone https://github.com/atillaSilva/ifood-case-ds.git   
+git clone https://github.com/atillaSilva/ifood-case-ds.git
 
-2) Rodar o arquivo [main](https://github.com/atillaSilva/ifood-case-ds/blob/main/app/main.ipynb) que encontra-se na pasta app*
+2) Deve-se criar o schema usando o codigo em SQL abaixo
+   CREATE SCHEMA IF NOT EXISTS ifood_case.default;
+
+4) Rodar o arquivo [main](https://github.com/atillaSilva/ifood-case-ds/blob/main/app/main.ipynb) que encontra-se na pasta app*
 
 *obs: O projeto foi feito no ambiente do databricks, se usar esse ambiente com o cluster serverless, nao ha necessidade de instalar nenhum module
